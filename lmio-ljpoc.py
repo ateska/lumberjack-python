@@ -89,6 +89,7 @@ async def handle_frame_stream(reader, writer, addr):
 				
 				# Bingo!
 				# Here is the main payload, the JSON formatted structured data.
+				# File `json_data.json` is overridden over and over in this version.
 				with open('json_data.json', 'wb') as f:
 					f.write(data)
 
