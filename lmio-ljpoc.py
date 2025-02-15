@@ -55,7 +55,7 @@ async def handle_frame_stream(reader, writer, addr):
 				data = await reader.readexactly(4)  # 32bit unsigned payload length value
 				(payload_length,) = struct.unpack("!I", data)
 
-				if payload_length > 16*1024*1024:
+				if payload_length > 16 * 1024 * 1024:
 					# Little bit of protection against decompression bombs.
 					print(f"Payload length is too large: {payload_length}")
 					return
@@ -78,15 +78,15 @@ async def handle_frame_stream(reader, writer, addr):
 			case 0x4A:  # 'J' - 'JSON' frame type
 				data = await reader.readexactly(8)
 				(seq, payload_length) = struct.unpack("!II", data)
-				
-				if payload_length > 16*1024*1024:
+
+				if payload_length > 16 * 1024 * 1024:
 					# Little bit of protection against decompression bombs.
 					print(f"Payload length is too large: {payload_length}")
 					return
 
 				data = await reader.readexactly(payload_length)
 				print(f'JSON data: read {len(data)} bytes.')
-				
+
 				# Bingo!
 				# Here is the main payload, the JSON formatted structured data.
 				# File `json_data.json` is overridden over and over in this version.
