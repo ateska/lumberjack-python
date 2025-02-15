@@ -23,7 +23,7 @@ The PoC dumps a separated JSON for every log event sent over the Lumberjack prot
 Other beats are likely supported as well b/c they all use libbeats and https://github.com/elastic/go-lumber but I haven't tested them (yet).
 
 SSL is not yet supported but it will be very simple to add (using TeskaLabs LogMan.io collector internal capabilities).
-SSL implementation supports autodetection, so that people can mix encrypted and raw connections from Beats.
+Final SSL implementation will support autodetection, so that people can mix encrypted and raw connections from Beats.
 
 Beats `output` configuration:
 
